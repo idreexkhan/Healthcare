@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Doctor page{% endblock %}
+{% block bottomnav %}
+<ul>
+        <li><a href="/doc">Home</a></li>
+        <li><a href="/appointment_chart">Appointment record</a></li>
+        <li><a href="/diseaserec">Disease Record</a></li>
+
+      </ul>
+{% endblock %}
+{% block page %}
+<h1 align="center">Today Appointments</h1>
+<form action="/doc" method="POST">
+    {% csrf_token %}
+ </form>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Disease</th>
+      <th scope="col">Time</th>
+        <th scope="col">BP</th>
+        <th scope="col">BMI</th>
+        <th scope="col">BS</th>
+        <th scope="col">HB</th>
+        <th scope="col">Platelets</th>
+        <th scope="col">Prescription</th>
+
+    </tr>
+  </thead>
+        {% for app in apps %}
+  <tbody>
+    <tr>
+      <th scope="row">{{app.patient.user.first_name}} {{app.patient.user.last_name}}</th>
+        <td>{{app.disease}}</td>
+        <td>{{app.time}}</td>
+        <td>{{app.BP}}</td>
+        <td>{{app.BMI}}</td>
+        <td>{{app.BS}}</td>
+        <td>{{app.HB}}</td>
+        <td>{{app.platelets}}</td>
+        <td>{{app.Prescription}}</td>
+        <td><a class="btn btn-primary" href="/addprescription/{{app.id}}" role="button">Add Prescriptions</a></td>
+    </tr>
+    </tbody>
+    {% endfor %}
+    </table>
+{% endblock %}

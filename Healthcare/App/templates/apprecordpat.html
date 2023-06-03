@@ -1,0 +1,33 @@
+{% extends "pat.html" %}
+{% load static %}
+{% block title %}search for Doctor{% endblock %}
+{% block page %}
+ <form action="/apprecordpat" method="POST">
+    {% csrf_token %}
+ </form>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Doctor Name</th>
+        <th scope="col"> Specialization</th>
+        <th scope="col">Disease</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+        <th scope="col">Prescription</th>
+
+    </tr>
+  </thead>
+        {% for rec in recs %}
+  <tbody>
+    <tr>
+      <th scope="row">{{rec.doctor.user.first_name}} {{rec.doctor.user.last_name}}</th>
+        <td>{{rec.doctor.specialization}}</td>
+        <td>{{rec.disease}}</td>
+        <td>{{rec.date}}</td>
+        <td>{{rec.time}}</td>
+        <td>{{rec.Prescription}}</td>
+    </tr>
+  </tbody>
+    {% endfor %}
+</table>
+{% endblock %}

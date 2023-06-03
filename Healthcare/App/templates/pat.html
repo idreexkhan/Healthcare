@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Patient page{% endblock %}
+{% block bottomnav %}
+    <ul>
+        <li><a href="/pat">Home</a></li>
+        <li><a href="{% url 'searchdoc' %}">Search-For-Doctor</a></li>
+        <li><a href="{% url 'apprecordpat'%}">Appointment Record</a></li>
+    </ul>
+{% endblock %}
+{% block page %}
+<h1 align="center">Today Appointments</h1>
+<form action="/pat" method="POST">
+    {% csrf_token %}
+ </form>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Doctor Name</th>
+        <th scope="col"> Specialization</th>
+        <th scope="col">Disease</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+        <th scope="col">Remarks</th>
+
+    </tr>
+  </thead>
+        {% for app in apps %}
+  <tbody>
+    <tr>
+      <th scope="row">{{app.doctor.user.first_name}} {{app.doctor.user.last_name}}</th>
+        <td>{{app.doctor.specialization}}</td>
+        <td>{{app.disease}}</td>
+        <td>{{app.date}}</td>
+        <td>{{app.time}}</td>
+        <td>{{app.Prescription}}</td>
+    </tr>
+  </tbody>
+    {% endfor %}
+</table>
+{% endblock %}

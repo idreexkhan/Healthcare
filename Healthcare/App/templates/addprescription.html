@@ -1,0 +1,21 @@
+{% extends "doc.html" %}
+{% load static %}
+{% block title %}Add Prescription{% endblock %}
+
+{% block page %}
+
+<div class="container" align="left">
+
+    <form action="addprescriptiondoc/{{ app.id }}" method="post">
+    {% csrf_token %}
+
+    Prescription:<br>
+    <input name="Prescription" value="{{ app.Prescription }}">
+    <br><br>
+    <button type="submit" class="btn btn-primary">Add Prescription</button>
+    </form>
+</div>
+
+</div>
+
+{% endblock %}

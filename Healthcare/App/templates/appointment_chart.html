@@ -1,0 +1,20 @@
+{% extends "doc.html" %}
+{% load static %}
+{% block title %}Appointment Chart Record{% endblock %}
+
+{% block page %}
+
+<div id='initialData'>
+    <h1> Total Appointment in <strong id="month"></strong> = {{data}} </h1>
+</div>
+ <script type="text/javascript">
+  var today = new Date();
+  var month = today.getMonth();
+  var monthlist = ["January","February","March","April ","May","June","July","August ","September","October","November","December "];
+  var month =(today.getMonth());
+  var dateTime = month;
+
+  document.getElementById("month").innerHTML =monthlist[month];
+
+  </script>
+{% endblock %}
